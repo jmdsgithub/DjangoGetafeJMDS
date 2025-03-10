@@ -12,5 +12,8 @@ def metodoViernes(request):
 def metodoListas(request):
     return render(request, 'aplicacion/listas.html')
 
+def metodoPelicula(request):
+    return render(request, 'aplicacion/pelicula.html')
+
 
 #    return HttpResponse('Hoy es viernes!!!!!')

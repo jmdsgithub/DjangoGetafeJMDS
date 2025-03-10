@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        p {
+            background-color: aquamarine;
+        }
+    </style>
+    <link rel="stylesheet" 
+    type="text/css" 
+    href="{% static 'css/pelis.css'%}">
+
+</head>
+<body>
+    <a href="/app/">Home</a>    
+    <a href="https://theobjective.com">Ir a The Objective...</a>
+    <a href="/app/viernes/">Ir al viernes...</a>
+    <a href="/app/listas/">Ir al listas...</a>
+    <a href="#/">Ir a película...</a>
+    <h1>Harry Potter</h1>
+    <img onmouseover="cambiar(this)" src="{% static 'images/harry-potter-y-la-piedra-filosofal.jpg'%}"/>
+    <img src="{% static 'images/harry-potter-y-la-piedra-filosofal.jpg'%}"/>
+    <img src="{% static 'images/harry-potter-y-la-piedra-filosofal.jpg'%}"/>
+    <script type="text/javascript"
+    src="{% static 'js/pelis.js' %}" 
+    <p>Pequeños grandes magos</p>
+    <p>Magia blanca</p>
+    <p>El mal no podrá contra ellos</p>
+</body>
+</html>
