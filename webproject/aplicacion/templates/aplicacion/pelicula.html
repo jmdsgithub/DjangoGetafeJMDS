@@ -16,11 +16,7 @@
 
 </head>
 <body>
-    <a href="/app/">Home</a>    
-    <a href="https://theobjective.com">Ir a The Objective...</a>
-    <a href="/app/viernes/">Ir al viernes...</a>
-    <a href="/app/listas/">Ir al listas...</a>
-    <a href="#/">Ir a película...</a>
+    {% include 'aplicacion/menu.html' %} 
     <h1>Harry Potter</h1>
     <img onmouseover="cambiar(this)" src="{% static 'images/harry-potter-y-la-piedra-filosofal.jpg'%}"/>
     <img src="{% static 'images/harry-potter-y-la-piedra-filosofal.jpg'%}"/>
