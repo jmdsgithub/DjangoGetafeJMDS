@@ -8,5 +8,7 @@ urlpatterns=[
     path('jugadores/', views.metodoJugadores, name='jugadores'),
     path('colores/', views.metodoColores, name='colores'),
     path('saludo/', views.metodoSaludo, name='saludo'),
-    path('sumarnumeros/', views.metodoSumarNumeros, name='sumarnumeros')
+    path('sumarnumeros/', views.metodoSumarNumeros, name='sumarnumeros'),
+    path('collatz/', views.metodoCollatz, name='collatz'),
+    path('tabla/', views.metodoTablaMultiplicar, name='tabla') 
 ]
