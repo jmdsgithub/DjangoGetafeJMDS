@@ -13,12 +13,22 @@
             <th>Id</th>
             <th>Nombre</th>
             <th>Localidad</th>
+            <th></th>
         </tr>
         {% for d in departamentos %}
         <tr>
             <td>{{ d.numero }}</td>
             <td>{{ d.nombre }}</td>
             <td>{{ d.localidad }}</td>
+            <td>
+                <a href="/detallesdepartamento?id={{d.numero}}">Detalles</a>
+            </td>
+            <td style="background-color: lightcoral">
+                <a href="/eliminardepartamento?id={{d.numero}}">Delete</a>
+            </td>
+            <td>
+                <a href="/modificardepartamento?id={{d.numero}}">Detalles</a>
+            </td>
         </tr>
         {% endfor %}
     </table>

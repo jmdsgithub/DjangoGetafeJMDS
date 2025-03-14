@@ -12,16 +12,27 @@ class ServiceDepartamentos:
     def __init__(self):
         self.connection=oracledb.connect(user='SYSTEM', password='oracle', dsn='localhost/xe')
 
-    def deleteDepartamento(self, numero):
-        sql="delete from dept where DEPT_NO=':p1'"
+    def detallesDepartamento(self, numero):
+        sql="select * from DEPT where DEPT_NO=:p1"
         cursor=self.connection.cursor()
-        cursor.execute(sql, (numero))
+        cursor.execute(sql, (numero,))
+        row=cursor.fetchone()
+        dept=Departamento()
+        dept.numero=row[0]
+        dept.nombre=row[1]
+        dept.localidad=row[2]
+        cursor.close()
+        return dept    
+    
+    def eliminarDepartamento(self, numero):
+        sql="delete from DEPT where DEPT_NO=:p1"
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (numero,))
         registros=cursor.rowcount
         self.connection.commit()
         cursor.close()
         return registros
     
-
     def insertDepartamento(self, numero, nombre, localidad):
         sql="insert into DEPT values (:p1, :p2, :p3)"
         cursor=self.connection.cursor()
@@ -44,6 +55,15 @@ class ServiceDepartamentos:
             lista.append(dept)
         cursor.close()
         return lista
+    
+    def modificarDepartamento(self, numero, nombre, localidad):
+        sql="update DEPT set DNOMBRE=:p1, LOC=:p2 where DEPT_NO=:p3"
+        cursor=self.connection.cursor()
+        cursor.execute(sql, (numero, nombre, localidad))
+        registros=cursor.rowcount
+        self.connection.commit()
+        cursor.close()
+        return registros
     
 class Hospital:
     HOSPITAL_COD=0

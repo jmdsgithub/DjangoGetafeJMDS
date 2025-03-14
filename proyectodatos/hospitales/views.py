@@ -22,7 +22,7 @@ def metodoHospitalesBBDD(request):
     }
     return render(request, 'pages/hospitales.html', context)
 
-def insertarDepartamento(request):
+def insertDepartamento(request):
     if('cajanumero' in request.POST):
         servicio=ServiceDepartamentos()
         numero=request.POST['cajanumero']
@@ -37,15 +37,53 @@ def insertarDepartamento(request):
     else:
         return render(request, 'pages/insertardepartamento.html')
     
-def deleteDepartamento(request):
-    if('cajanumero' in request.POST):
+def eliminarDepartamento(request):
+    if ('cajanumero' in request.POST):
         servicio=ServiceDepartamentos()
         numero=request.POST['cajanumero']
-        registros= servicio.deleteDepartamento(numero)
-        departamentos=servicio.getDepartamentos()
+        registros= servicio.eliminarDepartamento(numero)
         context={
-            "departamentos": departamentos
-        }
-        return render(request, 'pages/departamentos.html', context)
+            "mensaje": "Registros eliminados: " + str(registros)
+            }
+        return render(request, 'pages/eliminardepartamento.html', context)
+    elif ('id' in request.GET):
+        numero=request.GET['id']
+        context={
+              "numero": numero
+            }
+        return render(request, 'pages/eliminardepartamento.html', context)
     else:
         return render(request, 'pages/eliminardepartamento.html')
+    
+
+def detallesDepartamento(request):
+        if('id' in request.GET):
+            servicio=ServiceDepartamentos()
+            numero=request.GET['id']
+            departamento=servicio.detallesDepartamento(numero)
+            context={
+                "departamento": departamento
+            }
+            return render(request, 'pages/detallesdepartamento.html', context)
+        else:
+            return render(request, 'pages/detallesdepartamento.html') 
+        
+def modificarDepartamento(request):
+        servicio=ServiceDepartamentos()
+        if('cajanumero' in request.POST):
+            numero=request.POST['cajanumero']
+            nombre=request.POST['cajanombre']
+            localidad=request.POST['cajalocalidad']
+            registros=servicio.modificarDepartamento(numero, nombre, localidad)
+            context={
+                 "mensaje": "Registros modificados: " + str(registros)
+            }
+        elif('id' in request.GET):
+            numero=request.GET['id']
+            departamento=servicio.detallesDepartamento(numero)
+            context={
+                 "departamento": departamento
+            }
+            return render(request, 'pages/modificardepartamento.html', context)
+        else:       
+            return render(request, 'pages/modificardepartamento.html') 
