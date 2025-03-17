@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from hospitales.models import ServiceDepartamentos, ServiceHospitales
+from hospitales.models import ServiceDepartamentos, ServiceHospitales, ServiceEmpleados
 
 # Create your views here.
 
@@ -16,6 +16,7 @@ def metodoDepartamentosBBDD(request):
 
 def metodoHospitalesBBDD(request):
     servicio=ServiceHospitales()
+    
     hospitales=servicio.getHospitales()
     context={
         "hospitales": hospitales
@@ -37,6 +38,7 @@ def insertDepartamento(request):
     else:
         return render(request, 'pages/insertardepartamento.html')
     
+
 def eliminarDepartamento(request):
     if ('cajanumero' in request.POST):
         servicio=ServiceDepartamentos()
@@ -63,7 +65,7 @@ def detallesDepartamento(request):
             departamento=servicio.detallesDepartamento(numero)
             context={
                 "departamento": departamento
-            }
+            }            
             return render(request, 'pages/detallesdepartamento.html', context)
         else:
             return render(request, 'pages/detallesdepartamento.html') 
@@ -87,3 +89,18 @@ def modificarDepartamento(request):
             return render(request, 'pages/modificardepartamento.html', context)
         else:       
             return render(request, 'pages/modificardepartamento.html') 
+        
+def empleadosDepartamento(request):
+    servicio = ServiceEmpleados()
+    if ('iddepartamento' in request.POST):
+        numero = request.POST['iddepartamento']
+        empleados = servicio.getEmpleadosDepartamento(numero)
+        context = {
+            "empleados": empleados
+        }
+    else:
+        empleados = servicio.getEmpleados()
+        context = {
+            "empleados": empleados
+        }
+    return render(request, 'pages/empleadosdepartamento.html', context)

@@ -8,5 +8,6 @@ urlpatterns=[
     path('insertardepartamento/', views.insertDepartamento, name='insertardepartamento'),
     path('eliminardepartamento/', views.eliminarDepartamento, name='eliminardepartamento'),
     path('detallesdepartamento/', views.detallesDepartamento, name='detallesdepartamento'),
-    path('modificardepartamento/', views.modificarDepartamento, name='modificardepartamento')
+    path('modificardepartamento/', views.modificarDepartamento, name='modificardepartamento'),
+    path('empleadosdepartamento/', views.empleadosDepartamento, name='empdept')
 ]
